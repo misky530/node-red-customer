@@ -1,0 +1,12 @@
+{
+    "name": "mtim-license-checker",
+    "version": "0.0.1",
+    "description": "mtim license checker",
+    "main": "mtim-license-checker.js",
+    "dependencies": {},
+    "node-red": {
+      "nodes": {
+        "mtim-license-checker": "mtim-license-checker.js"
+      }
+    }
+  }
