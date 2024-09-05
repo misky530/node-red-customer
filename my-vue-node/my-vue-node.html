@@ -1,0 +1,61 @@
+<script type="text/html" data-template-name="my-vue-node">
+    <div id="app">
+        <!-- Vue 应用的挂载点 -->
+        <div>
+            <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+            <input type="text" id="node-input-name" placeholder="Name">
+        </div>
+        <div>
+            <!-- 使用 Vue.js 渲染的部分 -->
+            <label for="node-input-greeting"><i class="fa fa-comment"></i> Greeting</label>
+            <input type="text" id="node-input-greeting" v-model="greeting">
+        </div>
+        <div>
+            <button @click="showGreeting">Show Greeting</button>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('my-vue-node', {
+        category: 'mtim',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value: ""},
+            greeting: {value: "Hello, Vue!"}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: 'file.png',
+        label: function() {
+            return this.name || 'my-vue-node';
+        },
+        oneditprepare: function() {
+            // 引入 Vue.js
+            const vueScript = document.createElement('script');
+            vueScript.src = "https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js";
+            document.head.appendChild(vueScript);
+            
+            vueScript.onload = function() {
+                // Vue.js 应用
+                new Vue({
+                    el: '#app',
+                    data: {
+                        greeting: $("#node-input-greeting").val() // 从表单元素中获取初始值
+                    },
+                    methods: {
+                        showGreeting: function() {
+                            alert(this.greeting);
+                        }
+                    },
+                    watch: {
+                        greeting: function(newVal) {
+                            // 将 Vue 数据模型的更改同步到表单元素
+                            $("#node-input-greeting").val(newVal);
+                        }
+                    }
+                });
+            };
+        }
+    });
+</script>

@@ -1,0 +1,25 @@
+{
+  "name": "node-red-contrib-my-vue-node",
+  "version": "0.0.1",
+  "description": "A Node-RED custom node that uses Vue.js for its configuration UI.",
+  "main": "my-vue-node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node-red",
+    "node-red-node",
+    "vue",
+    "vuejs"
+  ],
+  "author": "caiqian",
+  "license": "MIT",
+  "node-red": {
+    "nodes": {
+      "my-vue-node": "my-vue-node.js"
+    }
+  },
+  "dependencies": {
+    "vue": "^2.6.14"  
+  }
+}
